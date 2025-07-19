@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英语单词记忆卡片 - English Vocabulary Cards</title>
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 英语单词记忆卡片</h1>
+            <p>English Vocabulary Memory Cards - 让学习更有趣！</p>
+        </div>
+        
+        <div class="controls">
+            <button class="btn" id="shuffleBtn">🔀 随机排序</button>
+            <button class="btn" id="showAllBtn">📖 显示全部</button>
+            <button class="btn" id="addWordBtn">➕ 添加单词</button>
+            
+            <!-- 搜索功能 -->
+            <div style="margin-top: 20px;">
+                <input type="text" id="searchInput" placeholder="搜索单词..." style="
+                    padding: 10px 15px;
+                    border: none;
+                    border-radius: 25px;
+                    font-size: 1em;
+                    width: 300px;
+                    max-width: 100%;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                ">
+                
+                <select id="levelFilter" style="
+                    padding: 10px 15px;
+                    border: none;
+                    border-radius: 25px;
+                    font-size: 1em;
+                    margin-left: 10px;
+                    background: white;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                ">
+                    <option value="all">所有难度</option>
+                    <option value="beginner">初级</option>
+                    <option value="intermediate">中级</option>
+                    <option value="advanced">高级</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="word-grid" id="wordGrid">
+            <!-- 单词卡片将通过 JavaScript 动态生成 -->
+        </div>
+        
+        <div class="footer">
+            <p>💡 点击卡片查看详细信息 | 🚀 托管在 GitHub Pages</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                快捷键: Ctrl+R 随机排序 | Ctrl+F 搜索
+            </p>
+        </div>
+    </div>
+
+    <script src="./js/fallback-data.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

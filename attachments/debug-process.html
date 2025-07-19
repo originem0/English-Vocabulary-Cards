@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Process Word</title>
+    <link rel="stylesheet" href="./css/detail.css">
+</head>
+<body>
+    <button class="back-btn" onclick="window.close()">← 返回</button>
+    
+    <div class="card">
+        <div class="header">
+            <h1 class="word-title" id="wordTitle">Loading...</h1>
+            <div class="pronunciation" id="pronunciation">Loading...</div>
+            <div class="definition" id="definition">Loading...</div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h3>🔍 调试信息</h3>
+                <div id="debugOutput">
+                    <p>正在检查数据加载...</p>
+                </div>
+            </div>
+            
+            <div class="section etymology">
+                <h3>🌱 词根词源</h3>
+                <div id="etymologyContent">等待数据...</div>
+            </div>
+            
+            <div class="visual-demo" id="visualDemo">
+                <div class="gear"></div>
+                <div class="process-flow" id="processFlow">
+                    <!-- 动态生成流程步骤 -->
+                </div>
+                <p style="margin-top: 20px; color: #4a6b7a; font-size: 1.1em;" id="visualMemory">
+                    <strong>Visual Memory:</strong> <span id="visualDescription">等待数据...</span>
+                </p>
+            </div>
+            
+            <div class="section story">
+                <h3>📖 Memory Story</h3>
+                <p id="memoryStory">等待数据...</p>
+            </div>
+            
+            <div class="section examples">
+                <h3>📝 Example Sentences</h3>
+                <div id="examplesList">等待数据...</div>
+            </div>
+            
+            <div class="section synonyms-antonyms">
+                <div class="syn-ant-item">
+                    <h4>Synonyms</h4>
+                    <div class="word-list" id="synonymsList">等待数据...</div>
+                </div>
+                <div class="syn-ant-item">
+                    <h4>Antonyms</h4>
+                    <div class="word-list" id="antonymsList">等待数据...</div>
+                </div>
+            </div>
+            
+            <div class="section phrases">
+                <h3>🔤 常用短语</h3>
+                <div id="phrasesList">等待数据...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/fallback-data.js"></script>
+    <script>
+        console.log('=== Debug Process 页面启动 ===');
+        
+        // 强制加载 Process 单词数据
+        async function debugLoadProcess() {
+            const debugOutput = document.getElementById('debugOutput');
+            let output = '<h4>调试过程：</h4>';
+            
+            try {
+                // 1. 检查备用数据
+                output += '<p>1. 检查备用数据...</p>';
+                if (window.fallbackWordDetails && window.fallbackWordDetails['Process']) {
+                    output += '<p>✅ Process 备用数据存在</p>';
+                    const processData = window.fallbackWordDetails['Process'];
+                    output += `<p>数据预览: ${JSON.stringify(processData).substring(0, 100)}...</p>`;
+                    
+                    // 2. 尝试渲染数据
+                    output += '<p>2. 开始渲染数据...</p>';
+                    renderProcessData(processData);
+                    output += '<p>✅ 渲染完成</p>';
+                } else {
+                    output += '<p>❌ Process 备用数据不存在</p>';
+                }
+                
+                // 3. 尝试加载 JSON 数据
+                output += '<p>3. 尝试加载 JSON 数据...</p>';
+                try {
+                    const response = await fetch('./data/word-details.json');
+                    output += `<p>📡 Fetch响应状态: ${response.status}</p>`;
+                    if (response.ok) {
+                        const data = await response.json();
+                        output += '<p>✅ JSON 解析成功</p>';
+                        if (data.words && data.words['Process']) {
+                            output += '<p>✅ JSON 数据加载成功，Process数据存在</p>';
+                            output += '<p>🎨 开始渲染Process数据...</p>';
+                            try {
+                                renderProcessData(data.words['Process']);
+                                output += '<p>✅ Process数据渲染完成</p>';
+                            } catch (renderError) {
+                                output += `<p>❌ 渲染错误: ${renderError.message}</p>`;
+                            }
+                        } else {
+                            output += '<p>❌ JSON 中没有 Process 数据</p>';
+                            output += `<p>可用的单词: ${Object.keys(data.words || {}).join(', ')}</p>`;
+                        }
+                    } else {
+                        output += `<p>❌ JSON 文件加载失败，状态码: ${response.status}</p>`;
+                    }
+                } catch (error) {
+                    output += `<p>❌ JSON 加载错误: ${error.message}</p>`;
+                    output += `<p>错误类型: ${error.name}</p>`;
+                    output += `<p>当前URL: ${window.location.href}</p>`;
+                    output += `<p>尝试的路径: ${new URL('./data/word-details.json', window.location.href).href}</p>`;
+                }
+                
+            } catch (error) {
+                output += `<p>❌ 调试过程出错: ${error.message}</p>`;
+                console.error('调试错误:', error);
+            }
+            
+            debugOutput.innerHTML = output;
+        }
+        
+        // 渲染 Process 数据
+        function renderProcessData(wordData) {
+            console.log('开始渲染 Process 数据:', wordData);
+            
+            // 添加渲染状态到调试输出
+            const debugOutput = document.getElementById('debugOutput');
+            let currentOutput = debugOutput.innerHTML;
+            
+            // 设置基本信息
+            const wordTitle = document.getElementById('wordTitle');
+            const pronunciation = document.getElementById('pronunciation');
+            const definition = document.getElementById('definition');
+            
+            if (wordTitle) {
+                wordTitle.textContent = wordData.word || 'Process';
+                currentOutput += '<p>✅ 标题设置完成</p>';
+            }
+            if (pronunciation) {
+                pronunciation.textContent = wordData.pronunciation || '/ˈprəʊses/';
+                currentOutput += '<p>✅ 发音设置完成</p>';
+            }
+            if (definition) {
+                definition.textContent = wordData.definition || 'A series of actions...';
+                currentOutput += '<p>✅ 定义设置完成</p>';
+            }
+            
+            debugOutput.innerHTML = currentOutput;
+            console.log('基本信息设置完成');
+            
+            // 渲染词根词源
+            if (wordData.etymology) {
+                const etymologyContent = document.getElementById('etymologyContent');
+                if (etymologyContent) {
+                    etymologyContent.innerHTML = `
+                        <p><strong>词根分解:</strong> ${wordData.etymology.breakdown}</p>
+                        <p><strong>词源解释:</strong> ${wordData.etymology.explanation}</p>
+                    `;
+                    console.log('词根词源渲染完成');
+                }
+            }
+            
+            // 渲染视觉演示
+            if (wordData.visualDemo) {
+                const processFlow = document.getElementById('processFlow');
+                const visualDescription = document.getElementById('visualDescription');
+                
+                if (processFlow) {
+                    processFlow.innerHTML = '';
+                    wordData.visualDemo.steps.forEach((step, index) => {
+                        const stepDiv = document.createElement('div');
+                        stepDiv.className = 'process-step';
+                        stepDiv.textContent = step;
+                        processFlow.appendChild(stepDiv);
+
+                        if (index < wordData.visualDemo.steps.length - 1) {
+                            const arrow = document.createElement('div');
+                            arrow.className = 'arrow';
+                            arrow.textContent = '→';
+                            processFlow.appendChild(arrow);
+                        }
+                    });
+                    console.log('视觉演示渲染完成');
+                }
+                
+                if (visualDescription) {
+                    visualDescription.textContent = wordData.visualDemo.description;
+                }
+            }
+            
+            // 渲染记忆故事
+            if (wordData.memoryStory) {
+                const memoryStory = document.getElementById('memoryStory');
+                if (memoryStory) {
+                    memoryStory.textContent = wordData.memoryStory;
+                    console.log('记忆故事渲染完成');
+                }
+            }
+            
+            // 渲染例句
+            if (wordData.examples) {
+                const examplesList = document.getElementById('examplesList');
+                if (examplesList) {
+                    examplesList.innerHTML = '';
+                    wordData.examples.forEach(example => {
+                        const exampleDiv = document.createElement('div');
+                        exampleDiv.className = 'example-item';
+                        exampleDiv.innerHTML = `
+                            <div class="example-type">${example.type}:</div>
+                            <div>${example.sentence}</div>
+                        `;
+                        examplesList.appendChild(exampleDiv);
+                    });
+                    console.log('例句渲染完成');
+                }
+            }
+            
+            // 渲染同义词
+            if (wordData.synonyms) {
+                const synonymsList = document.getElementById('synonymsList');
+                if (synonymsList) {
+                    synonymsList.innerHTML = '';
+                    wordData.synonyms.forEach(synonym => {
+                        const span = document.createElement('span');
+                        span.className = 'word-tag';
+                        span.textContent = synonym;
+                        synonymsList.appendChild(span);
+                    });
+                    console.log('同义词渲染完成');
+                }
+            }
+            
+            // 渲染反义词
+            if (wordData.antonyms) {
+                const antonymsList = document.getElementById('antonymsList');
+                if (antonymsList) {
+                    antonymsList.innerHTML = '';
+                    wordData.antonyms.forEach(antonym => {
+                        const span = document.createElement('span');
+                        span.className = 'word-tag';
+                        span.textContent = antonym;
+                        antonymsList.appendChild(span);
+                    });
+                    console.log('反义词渲染完成');
+                }
+            }
+            
+            // 渲染常用短语
+            if (wordData.phrases) {
+                const phrasesList = document.getElementById('phrasesList');
+                if (phrasesList) {
+                    phrasesList.innerHTML = '';
+                    wordData.phrases.forEach(phraseObj => {
+                        const phraseDiv = document.createElement('div');
+                        phraseDiv.className = 'phrase-item';
+                        phraseDiv.innerHTML = `<strong>${phraseObj.phrase}</strong> - ${phraseObj.meaning}`;
+                        phrasesList.appendChild(phraseDiv);
+                    });
+                    console.log('常用短语渲染完成');
+                }
+            }
+            
+            console.log('✅ Process 数据渲染全部完成');
+        }
+        
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM 加载完成，开始调试...');
+            setTimeout(debugLoadProcess, 500); // 延迟执行确保所有资源加载完成
+        });
+    </script>
+</body>
+</html>

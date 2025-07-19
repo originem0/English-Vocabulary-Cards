@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Detail - Memory Card</title>
+    <link rel="stylesheet" href="./css/detail.css">
+</head>
+<body>
+    <button class="back-btn">← 返回</button>
+    
+    <div class="card">
+        <div class="header">
+            <h1 class="word-title" id="wordTitle">Loading...</h1>
+            <div class="pronunciation" id="pronunciation"></div>
+            <div class="definition" id="definition"></div>
+        </div>
+        
+        <div class="content">
+            <div class="section etymology">
+                <h3>🌱 词根词源</h3>
+                <div id="etymologyContent"></div>
+            </div>
+            
+            <div class="visual-demo" id="visualDemo">
+                <div class="gear"></div>
+                <div class="process-flow" id="processFlow">
+                    <!-- 动态生成流程步骤 -->
+                </div>
+                <p style="margin-top: 20px; color: #4a6b7a; font-size: 1.1em;" id="visualMemory">
+                    <strong>Visual Memory:</strong> <span id="visualDescription"></span>
+                </p>
+            </div>
+            
+            <div class="section story">
+                <h3>📖 Memory Story</h3>
+                <p id="memoryStory"></p>
+            </div>
+            
+            <div class="section examples">
+                <h3>📝 Example Sentences</h3>
+                <div id="examplesList"></div>
+            </div>
+            
+            <div class="section synonyms-antonyms">
+                <div class="syn-ant-item">
+                    <h4>Synonyms</h4>
+                    <div class="word-list" id="synonymsList"></div>
+                </div>
+                <div class="syn-ant-item">
+                    <h4>Antonyms</h4>
+                    <div class="word-list" id="antonymsList"></div>
+                </div>
+            </div>
+            
+            <div class="section phrases">
+                <h3>🔤 常用短语</h3>
+                <div id="phrasesList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/fallback-data.js"></script>
+    <script src="./js/detail.js"></script>
+</body>
+</html>

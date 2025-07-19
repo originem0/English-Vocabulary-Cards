@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Word Detail</title>
+    <link rel="stylesheet" href="../../css/detail.css">
+</head>
+<body>
+    <button class="back-btn" onclick="window.close()">← 返回</button>
+    
+    <div class="card">
+        <div class="header">
+            <h1 class="word-title" id="wordTitle">Debug Mode</h1>
+            <div class="pronunciation" id="pronunciation">调试模式</div>
+            <div class="definition" id="definition">检查数据加载状态</div>
+        </div>
+        
+        <div class="content">
+            <div class="section">
+                <h3>🔍 调试信息</h3>
+                <div id="debugInfo">
+                    <p>正在检查数据...</p>
+                </div>
+            </div>
+            
+            <div class="section etymology">
+                <h3>🌱 词根词源</h3>
+                <div id="etymologyContent">等待数据加载...</div>
+            </div>
+            
+            <div class="visual-demo" id="visualDemo">
+                <div class="gear"></div>
+                <div class="process-flow" id="processFlow">
+                    <!-- 动态生成流程步骤 -->
+                </div>
+                <p style="margin-top: 20px; color: #4a6b7a; font-size: 1.1em;" id="visualMemory">
+                    <strong>Visual Memory:</strong> <span id="visualDescription">等待数据...</span>
+                </p>
+            </div>
+            
+            <div class="section story">
+                <h3>📖 Memory Story</h3>
+                <p id="memoryStory">等待数据加载...</p>
+            </div>
+            
+            <div class="section examples">
+                <h3>📝 Example Sentences</h3>
+                <div id="examplesList">等待数据加载...</div>
+            </div>
+            
+            <div class="section synonyms-antonyms">
+                <div class="syn-ant-item">
+                    <h4>Synonyms</h4>
+                    <div class="word-list" id="synonymsList">等待数据...</div>
+                </div>
+                <div class="syn-ant-item">
+                    <h4>Antonyms</h4>
+                    <div class="word-list" id="antonymsList">等待数据...</div>
+                </div>
+            </div>
+            
+            <div class="section phrases">
+                <h3>🔤 常用短语</h3>
+                <div id="phrasesList">等待数据加载...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/fallback-data.js"></script>
+    <script>
+        // 调试版本的详情页面
+        console.log('=== 调试模式启动 ===');
+        
+        // 检查备用数据是否加载
+        function checkData() {
+            const debugInfo = document.getElementById('debugInfo');
+            let info = '<h4>数据检查结果：</h4>';
+            
+            // 检查 fallbackVocabulary
+            if (window.fallbackVocabulary) {
+                info += '<p>✅ fallbackVocabulary 已加载</p>';
+                info += `<p>📊 包含 ${window.fallbackVocabulary.words.length} 个单词</p>`;
+                info += '<p>单词列表：';
+                window.fallbackVocabulary.words.forEach(word => {
+                    info += `<span style="background:#7b9db8;color:white;padding:2px 8px;margin:2px;border-radius:10px;display:inline-block;">${word.word}</span>`;
+                });
+                info += '</p>';
+            } else {
+                info += '<p>❌ fallbackVocabulary 未加载</p>';
+            }
+            
+            // 检查 fallbackWordDetails
+            if (window.fallbackWordDetails) {
+                info += '<p>✅ fallbackWordDetails 已加载</p>';
+                info += '<p>详细数据包含：';
+                Object.keys(window.fallbackWordDetails).forEach(word => {
+                    info += `<span style="background:#6b8ba5;color:white;padding:2px 8px;margin:2px;border-radius:10px;display:inline-block;">${word}</span>`;
+                });
+                info += '</p>';
+            } else {
+                info += '<p>❌ fallbackWordDetails 未加载</p>';
+            }
+            
+            // 检查URL参数
+            const urlParams = new URLSearchParams(window.location.search);
+            const wordParam = urlParams.get('word');
+            if (wordParam) {
+                info += `<p>🎯 URL参数: word = "${wordParam}"</p>`;
+                
+                // 检查该单词的数据
+                if (window.fallbackWordDetails && window.fallbackWordDetails[wordParam]) {
+                    info += `<p>✅ "${wordParam}" 的详细数据存在</p>`;
+                    loadWordData(wordParam);
+                } else {
+                    info += `<p>❌ "${wordParam}" 的详细数据不存在</p>`;
+                    info += '<p>可用的单词：' + Object.keys(window.fallbackWordDetails || {}).join(', ') + '</p>';
+                }
+            } else {
+                info += '<p>⚠️ 没有URL参数，默认加载 Process</p>';
+                loadWordData('Process');
+            }
+            
+            debugInfo.innerHTML = info;
+        }
+        
+        // 加载单词数据
+        function loadWordData(wordName) {
+            console.log(`尝试加载单词: ${wordName}`);
+            
+            if (!window.fallbackWordDetails || !window.fallbackWordDetails[wordName]) {
+                console.error(`单词 "${wordName}" 的数据不存在`);
+                return;
+            }
+            
+            const wordData = window.fallbackWordDetails[wordName];
+            console.log('单词数据:', wordData);
+            
+            // 设置基本信息
+            document.getElementById('wordTitle').textContent = wordData.word;
+            document.getElementById('pronunciation').textContent = wordData.pronunciation;
+            document.getElementById('definition').textContent = wordData.definition;
+            
+            // 渲染词根词源
+            if (wordData.etymology) {
+                document.getElementById('etymologyContent').innerHTML = `
+                    <p><strong>词根分解:</strong> ${wordData.etymology.breakdown}</p>
+                    <p><strong>词源解释:</strong> ${wordData.etymology.explanation}</p>
+                `;
+            }
+            
+            // 渲染视觉演示
+            if (wordData.visualDemo) {
+                const processFlow = document.getElementById('processFlow');
+                processFlow.innerHTML = '';
+                wordData.visualDemo.steps.forEach((step, index) => {
+                    const stepDiv = document.createElement('div');
+                    stepDiv.className = 'process-step';
+                    stepDiv.textContent = step;
+                    processFlow.appendChild(stepDiv);
+
+                    if (index < wordData.visualDemo.steps.length - 1) {
+                        const arrow = document.createElement('div');
+                        arrow.className = 'arrow';
+                        arrow.textContent = '→';
+                        processFlow.appendChild(arrow);
+                    }
+                });
+                
+                document.getElementById('visualDescription').textContent = wordData.visualDemo.description;
+            }
+            
+            // 渲染记忆故事
+            if (wordData.memoryStory) {
+                document.getElementById('memoryStory').textContent = wordData.memoryStory;
+            }
+            
+            // 渲染例句
+            if (wordData.examples) {
+                const examplesList = document.getElementById('examplesList');
+                examplesList.innerHTML = '';
+                wordData.examples.forEach(example => {
+                    const exampleDiv = document.createElement('div');
+                    exampleDiv.className = 'example-item';
+                    exampleDiv.innerHTML = `
+                        <div class="example-type">${example.type}:</div>
+                        <div>${example.sentence}</div>
+                    `;
+                    examplesList.appendChild(exampleDiv);
+                });
+            }
+            
+            // 渲染同义词
+            if (wordData.synonyms) {
+                const synonymsList = document.getElementById('synonymsList');
+                synonymsList.innerHTML = '';
+                wordData.synonyms.forEach(synonym => {
+                    const span = document.createElement('span');
+                    span.className = 'word-tag';
+                    span.textContent = synonym;
+                    synonymsList.appendChild(span);
+                });
+            }
+            
+            // 渲染反义词
+            if (wordData.antonyms) {
+                const antonymsList = document.getElementById('antonymsList');
+                antonymsList.innerHTML = '';
+                wordData.antonyms.forEach(antonym => {
+                    const span = document.createElement('span');
+                    span.className = 'word-tag';
+                    span.textContent = antonym;
+                    antonymsList.appendChild(span);
+                });
+            }
+            
+            // 渲染常用短语
+            if (wordData.phrases) {
+                const phrasesList = document.getElementById('phrasesList');
+                phrasesList.innerHTML = '';
+                wordData.phrases.forEach(phraseObj => {
+                    const phraseDiv = document.createElement('div');
+                    phraseDiv.className = 'phrase-item';
+                    phraseDiv.innerHTML = `<strong>${phraseObj.phrase}</strong> - ${phraseObj.meaning}`;
+                    phrasesList.appendChild(phraseDiv);
+                });
+            }
+            
+            console.log(`✅ "${wordName}" 数据加载完成`);
+        }
+        
+        // 页面加载完成后执行检查
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM加载完成，开始检查数据...');
+            setTimeout(checkData, 100); // 稍微延迟确保所有脚本都加载完成
+        });
+    </script>
+</body>
+</html>

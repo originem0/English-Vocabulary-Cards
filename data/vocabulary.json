@@ -1,0 +1,87 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "lastUpdated": "2024-01-01",
+    "totalWords": 6,
+    "description": "英语单词记忆卡片基础词汇库"
+  },
+  "words": [
+    {
+      "word": "Process",
+      "pronunciation": "/ˈprəʊses/ (noun) /prəˈses/ (verb)",
+      "definition": "一系列为达到特定结果而采取的行动或步骤；处理，加工",
+      "example": "Learning a new language is a gradual process that takes time and practice.",
+      "chinese": "过程，程序",
+      "level": "intermediate",
+      "category": "general",
+      "frequency": "high",
+      "tags": ["business", "academic", "daily"]
+    },
+    {
+      "word": "Achieve",
+      "pronunciation": "/əˈtʃiːv/",
+      "definition": "成功地完成或达到（目标、愿望等）",
+      "example": "She worked hard to achieve her dreams of becoming a doctor.",
+      "chinese": "实现，达到",
+      "level": "intermediate",
+      "category": "general",
+      "frequency": "high",
+      "tags": ["success", "goals", "motivation"]
+    },
+    {
+      "word": "Analyze",
+      "pronunciation": "/ˈænəlaɪz/",
+      "definition": "详细检查某事物的结构或组成部分",
+      "example": "Scientists analyze data to find patterns and draw conclusions.",
+      "chinese": "分析，解析",
+      "level": "intermediate",
+      "category": "academic",
+      "frequency": "high",
+      "tags": ["science", "research", "thinking"]
+    },
+    {
+      "word": "Creative",
+      "pronunciation": "/kriˈeɪtɪv/",
+      "definition": "具有创造力的，富有想象力的，有创意的",
+      "example": "She has a very creative approach to problem-solving.",
+      "chinese": "创造性的，有创意的",
+      "level": "intermediate",
+      "category": "personality",
+      "frequency": "medium",
+      "tags": ["art", "innovation", "thinking"]
+    },
+    {
+      "word": "Efficient",
+      "pronunciation": "/ɪˈfɪʃnt/",
+      "definition": "以最少的浪费达到最大效果的，高效的",
+      "example": "This new system is much more efficient than the old one.",
+      "chinese": "高效的，有效率的",
+      "level": "intermediate",
+      "category": "business",
+      "frequency": "high",
+      "tags": ["productivity", "business", "technology"]
+    },
+    {
+      "word": "Implement",
+      "pronunciation": "/ˈɪmplɪment/",
+      "definition": "实施，执行（计划、决定或想法）",
+      "example": "The company will implement new policies next month.",
+      "chinese": "实施，执行",
+      "level": "advanced",
+      "category": "business",
+      "frequency": "medium",
+      "tags": ["business", "management", "action"]
+    }
+  ],
+  "categories": {
+    "general": "通用词汇",
+    "academic": "学术词汇",
+    "business": "商务词汇",
+    "personality": "性格特征"
+  },
+  "levels": {
+    "beginner": "初级",
+    "intermediate": "中级",
+    "advanced": "高级"
+  }
+}
