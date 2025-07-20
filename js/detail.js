@@ -1,14 +1,19 @@
+console.log('detail.js script loaded');
+
 // 详情页面 JavaScript 功能
 class WordDetailApp {
     constructor() {
+        console.log('WordDetailApp constructor called');
         this.wordData = null;
         this.allWords = [];
         this.init();
     }
 
     async init() {
+        console.log('WordDetailApp init started');
         try {
             const wordParam = this.getUrlParameter('word');
+            console.log('Word parameter from URL:', wordParam);
             if (!wordParam) {
                 this.showError('未指定要查看的单词');
                 return;
@@ -31,75 +36,96 @@ class WordDetailApp {
 
     // 加载单词数据
     async loadWordData(wordName) {
+        console.log('Starting to load word data for:', wordName);
+        this.showLoading();
+
         try {
-            this.showLoading();
-            
-            // 尝试加载词汇表
-            try {
-                const vocabResponse = await fetch('./data/vocabulary.json');
-                if (!vocabResponse.ok) {
-                    throw new Error(`HTTP error! status: ${vocabResponse.status}`);
-                }
+            // 加载词汇表以支持导航
+            console.log('Fetching vocabulary.json...');
+            const vocabResponse = await fetch('./data/vocabulary.json');
+            console.log('Vocabulary response status:', vocabResponse.status);
+            if (vocabResponse.ok) {
                 const vocabData = await vocabResponse.json();
                 this.allWords = vocabData.words || [];
-                console.log('成功从JSON文件加载词汇表');
-            } catch (fetchError) {
-                console.warn('无法加载词汇表JSON文件，使用备用数据:', fetchError.message);
-                if (window.fallbackVocabulary && window.fallbackVocabulary.words) {
-                    this.allWords = window.fallbackVocabulary.words;
-                } else {
-                    this.allWords = [];
+                console.log('Vocabulary for navigation loaded, count:', this.allWords.length);
+            }
+
+            // 加载单词详情
+            console.log('Fetching word-details.json...');
+            const detailResponse = await fetch('./data/word-details.json');
+            console.log('Detail response status:', detailResponse.status);
+            if (!detailResponse.ok) {
+                throw new Error(`HTTP error! status: ${detailResponse.status}`);
+            }
+            const detailData = await detailResponse.json();
+            console.log('Successfully loaded and parsed word-details.json');
+            console.log('Available words in detail data:', Object.keys(detailData.words));
+            console.log('Looking for word:', wordName);
+            
+            this.wordData = detailData.words[wordName];
+            console.log('Found word data:', this.wordData);
+
+            // 如果没找到，尝试不区分大小写的匹配
+            if (!this.wordData) {
+                console.log('Exact match not found, trying case-insensitive match...');
+                const lowerWordName = wordName.toLowerCase();
+                const matchedKey = Object.keys(detailData.words).find(key => 
+                    key.toLowerCase() === lowerWordName
+                );
+                if (matchedKey) {
+                    console.log('Found case-insensitive match:', matchedKey);
+                    this.wordData = detailData.words[matchedKey];
                 }
             }
 
-            // 尝试加载详细数据
-            try {
-                const detailResponse = await fetch('./data/word-details.json');
-                if (!detailResponse.ok) {
-                    throw new Error(`HTTP error! status: ${detailResponse.status}`);
-                }
-                const detailData = await detailResponse.json();
-                this.wordData = detailData.words[wordName];
-                console.log('成功从JSON文件加载详细数据');
-            } catch (fetchError) {
-                console.warn('无法加载详细数据JSON文件，使用备用数据:', fetchError.message);
-                if (window.fallbackWordDetails && window.fallbackWordDetails[wordName]) {
-                    this.wordData = window.fallbackWordDetails[wordName];
-                } else {
-                    this.wordData = null;
-                }
-            }
-            
             if (!this.wordData) {
+                console.error(`Word "${wordName}" not found in detail data`);
                 throw new Error(`未找到单词 "${wordName}" 的详细信息`);
             }
 
+            console.log('Final word data to be used:', this.wordData);
             this.hideLoading();
         } catch (error) {
-            this.hideLoading();
+            console.error('Error in loadWordData:', error);
             throw error;
         }
     }
 
     // 渲染单词详情
     renderWordDetail() {
-        if (!this.wordData) return;
+        console.log('Starting to render word detail');
+        console.log('Word data available:', !!this.wordData);
+        if (!this.wordData) {
+            console.error('No word data available for rendering');
+            return;
+        }
+
+        console.log('Word data structure:', this.wordData);
 
         // 设置页面标题
         document.title = `${this.wordData.word} - Memory Card`;
+        console.log('Set page title to:', document.title);
 
         // 设置基本信息
+        console.log('Setting basic info...');
         this.setElementText('wordTitle', this.wordData.word);
         this.setElementText('pronunciation', this.wordData.pronunciation);
         this.setElementText('definition', this.wordData.definition);
 
         // 渲染各个部分
+        console.log('Rendering etymology...');
         this.renderEtymology();
+        console.log('Rendering visual demo...');
         this.renderVisualDemo();
+        console.log('Rendering memory story...');
         this.renderMemoryStory();
+        console.log('Rendering examples...');
         this.renderExamples();
+        console.log('Rendering synonyms and antonyms...');
         this.renderSynonymsAntonyms();
+        console.log('Rendering phrases...');
         this.renderPhrases();
+        console.log('Finished rendering word detail');
     }
 
     // 渲染词根词源
@@ -333,23 +359,97 @@ class WordDetailApp {
 
     // 工具方法
     setElementText(id, text) {
+        console.log(`Setting element ${id} with text:`, text);
         const element = document.getElementById(id);
+        console.log(`Element ${id} found:`, !!element);
         if (element && text) {
             element.textContent = text;
+            console.log(`Successfully set ${id} to:`, element.textContent);
+        } else {
+            if (!element) console.warn(`Element with id '${id}' not found`);
+            if (!text) console.warn(`No text provided for element '${id}'`);
         }
     }
 
     showLoading() {
+        console.log('showLoading called');
         const card = document.querySelector('.card');
+        console.log('Card element found:', !!card);
         if (card) {
+            console.log('Setting loading content, this will DESTROY existing DOM elements!');
             card.innerHTML = '<div class="loading">正在加载单词详情...</div>';
         }
     }
 
     hideLoading() {
+        console.log('hideLoading called');
         const loadingElement = document.querySelector('.loading');
+        console.log('Loading element found:', !!loadingElement);
         if (loadingElement) {
             loadingElement.remove();
+            console.log('Loading element removed');
+            
+            // 重新恢复原始HTML结构
+            console.log('Restoring original HTML structure...');
+            this.restoreOriginalHTML();
+        }
+    }
+
+    // 恢复原始HTML结构
+    restoreOriginalHTML() {
+        const card = document.querySelector('.card');
+        if (card) {
+            card.innerHTML = `
+                <div class="header">
+                    <h1 class="word-title" id="wordTitle">Loading...</h1>
+                    <div class="pronunciation" id="pronunciation"></div>
+                    <div class="definition" id="definition"></div>
+                </div>
+                
+                <div class="content">
+                    <div class="section etymology">
+                        <h3>🌱 词根词源</h3>
+                        <div id="etymologyContent"></div>
+                    </div>
+                    
+                    <div class="visual-demo" id="visualDemo">
+                        <div class="gear"></div>
+                        <div class="process-flow" id="processFlow">
+                            <!-- 动态生成流程步骤 -->
+                        </div>
+                        <p style="margin-top: 20px; color: #4a6b7a; font-size: 1.1em;" id="visualMemory">
+                            <strong>Visual Memory:</strong> <span id="visualDescription"></span>
+                        </p>
+                    </div>
+                    
+                    <div class="section story">
+                        <h3>📖 Memory Story</h3>
+                        <p id="memoryStory"></p>
+                    </div>
+                    
+                    <div class="section examples">
+                        <h3>📝 Example Sentences</h3>
+                        <div id="examplesList"></div>
+                    </div>
+                    
+                    <div class="section synonyms-antonyms">
+                        <div class="syn-ant-item">
+                            <h4>Synonyms</h4>
+                            <div class="word-list" id="synonymsList"></div>
+                        </div>
+                        <div class="syn-ant-item">
+                            <h4>Antonyms</h4>
+                            <div class="word-list" id="antonymsList"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="section phrases">
+                        <h3>🔤 常用短语</h3>
+                        <div id="phrasesList"></div>
+                    </div>
+                </div>
+            `;
+            console.log('Original HTML structure restored');
         }
     }
 
@@ -405,5 +505,31 @@ class WordDetailApp {
 
 // 页面加载完成后初始化应用
 document.addEventListener('DOMContentLoaded', function() {
-    window.wordDetailApp = new WordDetailApp();
+    console.log('DOM fully loaded and parsed');
+    
+    // 额外检查关键元素是否存在
+    const keyElements = ['wordTitle', 'pronunciation', 'definition', 'memoryStory'];
+    const missingElements = keyElements.filter(id => !document.getElementById(id));
+    
+    if (missingElements.length > 0) {
+        console.error('Missing DOM elements:', missingElements);
+        console.log('Available elements with IDs:', 
+            Array.from(document.querySelectorAll('[id]')).map(el => el.id)
+        );
+        
+        // 等待一下再重试
+        setTimeout(() => {
+            console.log('Retrying after 100ms...');
+            const stillMissing = keyElements.filter(id => !document.getElementById(id));
+            if (stillMissing.length === 0) {
+                console.log('Elements found after delay, initializing app...');
+                window.wordDetailApp = new WordDetailApp();
+            } else {
+                console.error('Elements still missing after delay:', stillMissing);
+            }
+        }, 100);
+    } else {
+        console.log('All required elements found, initializing app...');
+        window.wordDetailApp = new WordDetailApp();
+    }
 });

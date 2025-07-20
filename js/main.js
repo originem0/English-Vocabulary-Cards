@@ -19,36 +19,15 @@ class VocabularyApp {
 
     // 加载词汇数据
     async loadVocabulary() {
-        try {
-            this.showLoading();
-            
-            // 尝试加载JSON文件
-            try {
-                const response = await fetch('./data/vocabulary.json');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                this.vocabulary = data.words || [];
-                console.log('成功从JSON文件加载数据');
-            } catch (fetchError) {
-                console.warn('无法加载JSON文件，使用备用数据:', fetchError.message);
-                
-                // 使用备用数据
-                if (window.fallbackVocabulary && window.fallbackVocabulary.words) {
-                    this.vocabulary = window.fallbackVocabulary.words;
-                    console.log('使用备用数据');
-                } else {
-                    throw new Error('备用数据也不可用');
-                }
-            }
-            
-            this.currentWords = [...this.vocabulary];
-            this.hideLoading();
-        } catch (error) {
-            this.hideLoading();
-            throw error;
+        this.showLoading();
+        const response = await fetch('./data/vocabulary.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+        const data = await response.json();
+        this.vocabulary = data.words || [];
+        this.currentWords = [...this.vocabulary];
+        this.hideLoading();
     }
 
     // 渲染单词卡片
