@@ -7,34 +7,41 @@
   "words": {
     "Process": {
       "word": "Process",
-      "pronunciation": "/ˈprəʊses/ (noun) /prəˈses/ (verb)",
+      "pronunciation": "/'prɒses/ (noun) /prə'ses/ (verb)",
       "definition": "A series of actions or steps taken to achieve a particular result; to perform operations on something",
-      "etymology": {
-        "breakdown": "pro- (向前) + -cess (走，行进)",
-        "explanation": "来自拉丁语 \"processus\"，意为\"向前行进\"。这个词完美地体现了\"过程\"的本质——一步步向前推进，逐渐达到目标。无论是制造流程、思维过程还是数据处理，都包含着这种\"向前行进\"的连续性动作。"
-      },
       "visualDemo": {
-        "steps": ["1", "2", "3", "4"],
+        "steps": ["1", "→", "2", "→", "3", "→", "4"],
         "description": "Steps flowing forward like a production line - each stage builds upon the previous one"
       },
-      "memoryStory": "Picture a master craftsman in his workshop, carefully following each step of his process. First, he selects the raw materials, then shapes them with precise tools, next he refines the details, and finally polishes the finished piece. Each stage in this process moves him closer to his goal. When he processes the materials, he transforms them through systematic steps. Remember: every great achievement is the result of a well-planned process.",
+      "story": {
+        "coreImage": "A factory assembly line where each station transforms raw materials step by step into finished products.",
+        "actionEssence": "To advance through stages systematically, each step building upon the previous to create transformation.",
+        "conceptUnity": "Whether handling data or following procedures - it's the methodical progression toward a goal."
+      },
+      "etymology": {
+        "analysis": "pro- (向前) + -cess (去、行进)",
+        "cognates": "同根词汇： proceed (前进), procession (队伍), processor (处理器)",
+        "explanation": "从拉丁语\"processus\"演变而来，意为\"向前行进\"。这个词完全体现了\"过程\"的本质——一步步前进推进，逐渐达成目标。无论是数据处理，还是各种工作步骤，都含有这种\"向前行进\"的线性动作。"
+      },
       "examples": [
-        { "type": "Noun (series of steps)", "sentence": "The manufacturing process requires strict quality control at every stage." },
-        { "type": "Noun (procedure)", "sentence": "Learning a new language is a gradual process that takes time and practice." },
-        { "type": "Verb (handle/treat)", "sentence": "The computer can process millions of calculations per second." },
-        { "type": "Verb (deal with)", "sentence": "It took me weeks to process the shocking news about the accident." }
+        { "type": "NOUN", "sentence": "The manufacturing process requires careful quality control at every stage." },
+        { "type": "VERB", "sentence": "The computer processes millions of data points in seconds." },
+        { "type": "NOUN", "sentence": "Learning a new language is a gradual process that requires patience." },
+        { "type": "VERB", "sentence": "Please process this application by the end of the week." }
       ],
-      "synonyms": ["procedure", "method", "system", "operation", "technique", "workflow"],
-      "antonyms": ["chaos", "disorder", "randomness", "confusion", "neglect", "ignore"],
+      "synonyms": ["procedure", "method", "system", "workflow", "operation", "sequence"],
+      "antonyms": ["result", "outcome", "product", "end", "conclusion"],
       "phrases": [
-        { "phrase": "in the process of", "meaning": "正在进行中" },
-        { "phrase": "step-by-step process", "meaning": "逐步过程" },
-        { "phrase": "process information", "meaning": "处理信息" },
-        { "phrase": "due process", "meaning": "正当程序" },
-        { "phrase": "thought process", "meaning": "思维过程" },
-        { "phrase": "manufacturing process", "meaning": "制造流程" },
-        { "phrase": "process of elimination", "meaning": "排除法" }
-      ]
+        { "phrase": "learning process", "meaning": "学习过程" },
+        { "phrase": "decision-making process", "meaning": "决策流程" },
+        { "phrase": "data processing", "meaning": "数据处理" },
+        { "phrase": "in the process of", "meaning": "正在...过程中" },
+        { "phrase": "due process", "meaning": "正当程序" }
+      ],
+      "memoryPrompt": {
+        "anchor": "🔗 记忆锚点： 想想你最近完成的一个复杂任务，是否也像生产线一样，需要按步骤逐步推进？无论是准备考试、完成项目，还是学习新技能，都是一个\"process\"。",
+        "question": "💭 主动输出： 用\"process\"描述一个你正在经历的个人成长过程，如何让这个概念成为你表达的一部分？"
+      }
     },
     "Achieve": {
       "word": "Achieve",
