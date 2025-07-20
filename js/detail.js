@@ -129,8 +129,7 @@ class WordDetailApp {
 
         container.innerHTML = examples.map(ex => `
             <div class="example-item">
-                <div class="example-label">${ex.type}</div>
-                <div class="example-text">${ex.sentence}</div>
+                <div class="example-text">${ex.sentence} <em>(${ex.pos})</em></div>
             </div>
         `).join('');
     }

@@ -24,10 +24,8 @@
         "explanation": "从拉丁语\"processus\"演变而来，意为\"向前行进\"。这个词完全体现了\"过程\"的本质——一步步前进推进，逐渐达成目标。无论是数据处理，还是各种工作步骤，都含有这种\"向前行进\"的线性动作。"
       },
       "examples": [
-        { "type": "NOUN", "sentence": "The manufacturing process requires careful quality control at every stage." },
-        { "type": "VERB", "sentence": "The computer processes millions of data points in seconds." },
-        { "type": "NOUN", "sentence": "Learning a new language is a gradual process that requires patience." },
-        { "type": "VERB", "sentence": "Please process this application by the end of the week." }
+        { "sentence": "The manufacturing process requires careful quality control.", "pos": "n." },
+        { "sentence": "The computer can process millions of calculations per second.", "pos": "v." }
       ],
       "synonyms": ["procedure", "method", "system", "workflow", "operation", "sequence"],
       "antonyms": ["result", "outcome", "product", "end", "conclusion"],
@@ -57,20 +55,14 @@
       },
       "memoryStory": "Imagine a mountain climber who sets out to achieve the summit. She starts with a clear goal (the peak), puts in consistent effort (training and climbing), overcomes obstacles (weather and terrain), and finally achieves her dream by reaching the top. The word 'achieve' captures this journey from aspiration to accomplishment.",
       "examples": [
-        { "type": "Personal goals", "sentence": "She worked hard to achieve her dreams of becoming a doctor." },
-        { "type": "Academic success", "sentence": "Students who study regularly achieve better grades." },
-        { "type": "Business objectives", "sentence": "The company achieved record profits this quarter." },
-        { "type": "Life milestones", "sentence": "He achieved financial independence by age 40." }
+        { "sentence": "She worked hard to achieve her dreams of becoming a doctor.", "pos": "v." }
       ],
       "synonyms": ["accomplish", "attain", "reach", "realize", "succeed", "fulfill"],
       "antonyms": ["fail", "lose", "miss", "abandon", "forfeit", "surrender"],
       "phrases": [
         { "phrase": "achieve success", "meaning": "获得成功" },
         { "phrase": "achieve one's goals", "meaning": "实现目标" },
-        { "phrase": "achieve excellence", "meaning": "追求卓越" },
-        { "phrase": "achieve a breakthrough", "meaning": "取得突破" },
-        { "phrase": "achieve recognition", "meaning": "获得认可" },
-        { "phrase": "achieve balance", "meaning": "达到平衡" }
+        { "phrase": "achieve excellence", "meaning": "追求卓越" }
       ]
     },
     "Analyze": {
@@ -87,20 +79,14 @@
       },
       "memoryStory": "Think of a detective analyzing a crime scene. She carefully examines each piece of evidence, breaks down the sequence of events, studies the relationships between different clues, and finally pieces together the complete picture. This systematic examination and breakdown is exactly what 'analyze' means in any context.",
       "examples": [
-        { "type": "Scientific research", "sentence": "Scientists analyze data to find patterns and draw conclusions." },
-        { "type": "Business intelligence", "sentence": "The marketing team will analyze customer feedback to improve the product." },
-        { "type": "Academic study", "sentence": "Students must analyze the poem's themes and literary devices." },
-        { "type": "Problem solving", "sentence": "Let's analyze this problem step by step to find the best solution." }
+        { "sentence": "Scientists analyze data to find patterns and draw conclusions.", "pos": "v." }
       ],
       "synonyms": ["examine", "study", "investigate", "dissect", "evaluate", "scrutinize"],
       "antonyms": ["ignore", "overlook", "synthesize", "combine", "neglect", "disregard"],
       "phrases": [
         { "phrase": "analyze data", "meaning": "分析数据" },
         { "phrase": "analyze the situation", "meaning": "分析情况" },
-        { "phrase": "analyze results", "meaning": "分析结果" },
-        { "phrase": "analyze trends", "meaning": "分析趋势" },
-        { "phrase": "analyze performance", "meaning": "分析表现" },
-        { "phrase": "analyze the market", "meaning": "分析市场" }
+        { "phrase": "analyze results", "meaning": "分析结果" }
       ]
     },
     "Creative": {
@@ -117,20 +103,15 @@
       },
       "memoryStory": "Picture an artist in her studio, surrounded by blank canvases and colorful paints. She doesn't copy what already exists; instead, she lets her creative mind flow freely. She combines colors in new ways, creates unique shapes, and brings her imagination to life. Her creative process transforms simple materials into something beautiful and original that has never existed before.",
       "examples": [
-        { "type": "Artistic expression", "sentence": "She has a very creative approach to problem-solving." },
-        { "type": "Innovation", "sentence": "The creative team developed an innovative marketing campaign." },
-        { "type": "Personal trait", "sentence": "Creative people often think outside the box." },
-        { "type": "Professional role", "sentence": "He works as a creative director at an advertising agency." }
+        { "sentence": "She has a very creative approach to problem-solving.", "pos": "adj." },
+        { "sentence": "The company needs a creative to lead the new campaign.", "pos": "n." }
       ],
       "synonyms": ["innovative", "imaginative", "original", "inventive", "artistic", "resourceful"],
       "antonyms": ["uncreative", "conventional", "traditional", "ordinary", "unimaginative", "mundane"],
       "phrases": [
         { "phrase": "creative thinking", "meaning": "创造性思维" },
         { "phrase": "creative process", "meaning": "创作过程" },
-        { "phrase": "creative solution", "meaning": "创新解决方案" },
-        { "phrase": "creative writing", "meaning": "创意写作" },
-        { "phrase": "creative industry", "meaning": "创意产业" },
-        { "phrase": "creative freedom", "meaning": "创作自由" }
+        { "phrase": "creative solution", "meaning": "创新解决方案" }
       ]
     },
     "Efficient": {
@@ -147,20 +128,14 @@
       },
       "memoryStory": "Imagine a master chef in a busy restaurant kitchen. She moves with precision, never wasting a motion. Every tool has its place, every ingredient is prepared in advance, and every step flows seamlessly into the next. In just minutes, she creates a perfect dish while others are still chopping vegetables. This is efficiency - achieving excellence with minimal waste of time, energy, or resources.",
       "examples": [
-        { "type": "Work performance", "sentence": "This new system is much more efficient than the old one." },
-        { "type": "Energy usage", "sentence": "LED lights are more efficient than traditional bulbs." },
-        { "type": "Time management", "sentence": "She's very efficient at organizing her daily schedule." },
-        { "type": "Resource utilization", "sentence": "The efficient use of materials reduced production costs." }
+        { "sentence": "This new system is much more efficient than the old one.", "pos": "adj." }
       ],
       "synonyms": ["effective", "productive", "competent", "capable", "streamlined", "optimized"],
       "antonyms": ["inefficient", "wasteful", "slow", "unproductive", "clumsy", "disorganized"],
       "phrases": [
         { "phrase": "energy efficient", "meaning": "节能的" },
         { "phrase": "cost efficient", "meaning": "成本效益高的" },
-        { "phrase": "time efficient", "meaning": "时间效率高的" },
-        { "phrase": "efficient workflow", "meaning": "高效工作流程" },
-        { "phrase": "efficient management", "meaning": "高效管理" },
-        { "phrase": "fuel efficient", "meaning": "燃油效率高的" }
+        { "phrase": "time efficient", "meaning": "时间效率高的" }
       ]
     },
     "Implement": {
@@ -177,20 +152,15 @@
       },
       "memoryStory": "Think of a construction foreman who receives architectural blueprints. The plans are beautiful on paper, but they're just ideas until someone implements them. The foreman organizes workers, gathers materials, and systematically turns the blueprint into reality, brick by brick. Implementation is the bridge between planning and achievement - it's where ideas become reality through systematic action.",
       "examples": [
-        { "type": "Business strategy", "sentence": "The company will implement new policies next month." },
-        { "type": "Technology", "sentence": "We need to implement this feature in our software." },
-        { "type": "Education", "sentence": "The school implemented a new curriculum this year." },
-        { "type": "Government", "sentence": "The government implemented stricter environmental regulations." }
+        { "sentence": "The company will implement new policies next month.", "pos": "v." },
+        { "sentence": "A garden implement lay on the grass.", "pos": "n." }
       ],
       "synonyms": ["execute", "carry out", "apply", "enforce", "realize", "enact"],
       "antonyms": ["abandon", "cancel", "ignore", "neglect", "discontinue", "suspend"],
       "phrases": [
         { "phrase": "implement a plan", "meaning": "实施计划" },
         { "phrase": "implement changes", "meaning": "实施变革" },
-        { "phrase": "implement policies", "meaning": "执行政策" },
-        { "phrase": "implement solutions", "meaning": "实施解决方案" },
-        { "phrase": "implement measures", "meaning": "实施措施" },
-        { "phrase": "implement strategies", "meaning": "实施策略" }
+        { "phrase": "implement policies", "meaning": "执行政策" }
       ]
     }
   }

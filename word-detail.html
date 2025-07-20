@@ -274,6 +274,7 @@
         }
 
         @media (max-width: 480px) {
+            @media (max-width: 480px) {
             .header, .content {
                 padding: 20px;
             }
@@ -281,12 +282,11 @@
                 font-size: 2em;
             }
             .process-flow {
-                flex-direction: column;
-                gap: 10px;
+                flex-wrap: wrap; /* Allow items to wrap */
+                justify-content: center; /* Center the items */
+                gap: 15px;
             }
-            .arrow {
-                transform: rotate(90deg);
-            }
+        }
         }
     </style>
 </head>
@@ -317,7 +317,7 @@
             </div>
 
             <div class="section" id="examplesSection">
-                <div class="section-title">💎 Usage Examples</div>
+                <div class="section-title">💎 Multi-part-of-speech Examples</div>
                 <div class="usage-examples" id="examplesList"></div>
             </div>
             
