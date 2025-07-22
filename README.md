@@ -1,7 +1,7 @@
-# 📚 英语单词记忆卡片网站
-## English Vocabulary Memory Cards
+# 📚 English-WordGist
+## 词汇精研 & 视觉通意
 
-一个美观、模块化的英语单词学习网站，采用记忆卡片的形式帮助用户更好地学习和记忆英语单词。
+一个美观、模块化的英语单词学习网站，旨在通过“词汇精研”和“视觉通意”帮助用户深度理解和记忆英语单词。
 
 ### ✨ 功能特点
 
@@ -19,7 +19,7 @@
 ### 📁 项目结构
 
 ```
-English-Vocabulary-Cards/
+English-WordGist/
 ├── index.html              # 主页面
 ├── word-detail.html        # 单词详情页面
 ├── css/                    # 样式文件夹
@@ -37,7 +37,7 @@ English-Vocabulary-Cards/
 
 ### 🚀 在线访问
 
-访问网站: [https://yourusername.github.io/English-Vocabulary-Cards](https://yourusername.github.io/English-Vocabulary-Cards)
+访问网站: [https://yourusername.github.io/English-WordGist](https://yourusername.github.io/English-WordGist)
 
 ### 📋 包含的单词
 
@@ -60,7 +60,7 @@ English-Vocabulary-Cards/
    - 选择 "main" 分支和 "/ (root)" 文件夹
    - 点击 "Save"
 4. **等待部署完成** (通常需要几分钟)
-5. **访问您的网站**: `https://yourusername.github.io/English-Vocabulary-Cards`
+5. **访问您的网站**: `https://yourusername.github.io/English-WordGist`
 
 ### 🎯 使用方法
 

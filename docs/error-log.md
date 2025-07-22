@@ -1,7 +1,7 @@
 # 🐛 错误日志 - 详情页面内容无法显示问题
 
 ## 📅 问题发生时间
-2024年 - English Vocabulary Cards 项目
+2024年 - English-WordGist 项目
 
 ## 🔍 问题描述
 用户使用 VS Code + Live Server 打开 `index.html`，点击单词卡片跳转到详情页后，详情页面完全空白，没有显示任何单词学习内容，但控制台没有报错。

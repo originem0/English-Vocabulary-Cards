@@ -61,7 +61,7 @@ class WordDetailApp {
     renderWordDetail() {
         if (!this.wordData) return;
 
-        document.title = `${this.wordData.word} - Memory Card`;
+        document.title = `${this.wordData.word} - English-WordGist`;
         this.setElementText('wordTitle', this.wordData.word);
         this.setElementText('pronunciation', this.wordData.pronunciation);
         this.setElementText('definition', this.wordData.definition);
